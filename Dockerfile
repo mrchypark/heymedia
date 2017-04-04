@@ -8,5 +8,5 @@ WORKDIR /usr/src/app
 # 앱 의존성 설치
 COPY app/ /usr/src/app
 RUN npm install
-EXPOSE 8000
+EXPOSE 3000
 CMD [ "npm", "start" ]
