@@ -7,6 +7,6 @@ WORKDIR /usr/src/app
 
 # 앱 의존성 설치
 COPY app/package.json /usr/src/app/package.json
-RUN npm install && npm install nodemon -g
+RUN npm install -g && npm install nodemon -g
 EXPOSE 3000
 CMD [ "npm", "test" ]
