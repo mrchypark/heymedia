@@ -1,4 +1,4 @@
-FROM resin/rpi-node:6.5-slim-20170331 
+FROM resin/raspberrypi3-node:8.0.0-slim
 
 MAINTAINER mrchypark <mrchypark@gmail.com>
 # 앱 디렉토리 생성
