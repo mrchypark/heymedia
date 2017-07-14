@@ -6,7 +6,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # 앱 의존성 설치
-COPY app/ /usr/src/app
+COPY app/package.json /usr/src/app/package.json
 RUN npm install
 EXPOSE 3000
-CMD [ "npm", "start" ]
+CMD [ "npm", "test" ]
