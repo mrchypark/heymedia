@@ -1,12 +1,18 @@
-FROM resin/raspberrypi3-node:8.0.0-slim
+FROM resin/raspberrypi3-python:2.7.13-slim
+MAINTAINER chanyub.park "mrchypark@gmail.com"
 
-MAINTAINER mrchypark <mrchypark@gmail.com>
-# 앱 디렉토리 생성
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+RUN apt-get update && apt-get install -y python-pip python-dev build-essential libssl-dev libffi-dev
 
-# 앱 의존성 설치
-COPY app/ /usr/src/app/
-RUN npm install
-EXPOSE 3000
-CMD [ "npm", "start" ]
+RUN apt-get update && apt-get install -y r-base libopenblas-base r-base-dev libcurl4-openssl-dev libxml2-dev
+RUN apt-get update && Rscript -e 'install.packages(c("Rcpp","xml2","httr"), destdir ="/usr/local/lib/R/site-library")' \
+    && Rscript -e 'install.packages("https://cran.r-project.org/src/contrib/reticulate_0.8.tar.gz", repo=NULL, type="source", destdir ="/usr/local/lib/R/site-library")'
+
+COPY app/requirements.txt /app/requirements.txt
+WORKDIR /app
+RUN pip install -r requirements.txt
+
+COPY app/ /app
+WORKDIR /app
+
+ENTRYPOINT ["Rscript"]
+CMD ["app.R"]
