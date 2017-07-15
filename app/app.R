@@ -5,8 +5,9 @@ library(rmarkdown, lib.loc = "/usr/local/lib/R/site-library")
 flask = import('flask')
 app = flask$Flask('__main__')
 
-index = function() {
-  ret <- render("/app/static/index.Rmd")
+ret <- render("/app/static/index.Rmd")
+
+index = function(ret) {
   return(render_template(ret))
   }
 app$add_url_rule('/', 
