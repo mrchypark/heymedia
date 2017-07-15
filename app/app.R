@@ -6,7 +6,8 @@ flask = import('flask')
 app = flask$Flask('__main__')
 
 index = function() {
-  return(render("/app/static/index.Rmd"))
+  render("/app/static/index.Rmd")
+  return("/app/static/index.html")
   }
 app$add_url_rule('/', 
                  methods=list("GET","POST"),
