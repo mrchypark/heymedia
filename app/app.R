@@ -8,7 +8,7 @@ app = flask$Flask('__main__')
 ret <- render("/app/static/index.Rmd")
 
 index = function(ret) {
-  return( app$render_template(ret) )
+  return( flask$render_template(ret) )
   }
 app$add_url_rule('/', 
                  methods=list("GET","POST"),
